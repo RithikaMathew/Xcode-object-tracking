@@ -1,0 +1,11 @@
+{
+  "author" : "Your Name",
+  "description" : "Cap'n Crunch cereal box for object tracking",
+  "fileFormatVersion" : "1.0",
+  "license" : "",
+  "mluiVersion" : "146.1",
+  "osVersion" : "24A5264n",
+  "uuid" : "CAPN-CRUNCH-4CBD-ABB0-367A736D7B54",
+  "visibleName" : "CapnCrunch Tracker",
+  "xcodeVersion" : "16A5170u"
+}

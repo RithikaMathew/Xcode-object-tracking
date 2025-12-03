@@ -1,0 +1,19 @@
+// Add this debug code to ReferenceObjectLoader.swift to see what's being loaded
+
+// In the loadReferenceObjects() function, add this debug print after getting referenceObjectFiles:
+
+print("🔍 DEBUG: Found reference object files:")
+for file in referenceObjectFiles {
+    print("  - \(file)")
+}
+print("🔍 DEBUG: Bundle resource path: \(Bundle.main.resourcePath ?? "nil")")
+
+// Also add this in loadReferenceObject() function after creating referenceObject:
+print("🔍 DEBUG: Loaded reference object: \(url.lastPathComponent) with ID: \(referenceObject.id)")
+print("🔍 DEBUG: USDZ file path: \(referenceObject.usdzFile?.absoluteString ?? "nil")")
+
+// Add this debug code to your AppModel in startTracking() method:
+print("🔍 DEBUG: Starting tracking with \(referenceObjects.count) reference objects:")
+for obj in referenceObjects {
+    print("  - Object ID: \(obj.id)")
+}

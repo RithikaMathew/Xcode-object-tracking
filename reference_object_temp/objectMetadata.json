@@ -1,0 +1,31 @@
+{
+  "geometry" : {
+    "boundingBox" : {
+      "max" : [
+        0.1,
+        0.25,
+        0.05
+      ],
+      "min" : [
+        -0.1,
+        0,
+        -0.05
+      ]
+    },
+    "keypoints" : [
+      [-0.1, 0, -0.05],
+      [0.1, 0, -0.05],
+      [-0.1, 0.25, -0.05],
+      [-0.1, 0, 0.05],
+      [0.1, 0.25, -0.05],
+      [-0.1, 0.25, 0.05],
+      [0.1, 0, 0.05],
+      [0.1, 0.25, 0.05]
+    ]
+  },
+  "viewLimits" : {
+    "excludesBacksideViews" : false,
+    "excludesBottomViews" : false,
+    "isGravityAligned" : false
+  }
+}

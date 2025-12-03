@@ -1,0 +1,21 @@
+// Expected debug messages for object tracking:
+
+// 1. Reference object loading:
+"🔍 DEBUG: Found reference object files:"
+"  - Box.referenceobject"
+"  - DutchOven.referenceobject" 
+"  - Milk.referenceobject"
+"  - CapnCrunch.referenceobject"
+
+// 2. ARKit session starting:
+"Starting tracking with 4 reference objects"
+
+// 3. Object detection (when successful):
+"Object anchor added for reference object: [UUID]"
+"Creating visualization for object type: capnCrunch"
+
+// 4. Error messages to look for:
+"Failed to load reference object"
+"ARKit error:"
+"Object tracking provider error:"
+"No reference objects found"
