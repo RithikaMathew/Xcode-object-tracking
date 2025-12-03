@@ -1,0 +1,11 @@
+PLACEHOLDER_FOR_TRAINED_REFERENCE_OBJECT
+
+This file needs to be replaced with the actual .referenceObject file that you generate using Create ML.
+
+To create this file:
+1. Use Create ML (version 6 or higher, bundled with Xcode 16)
+2. Train on your capncrunch.usdz file
+3. Replace this placeholder file with the generated .referenceObject
+4. The training process typically takes 4-16 hours
+
+The generated .referenceObject file will be a zip archive containing the trained object recognition data.

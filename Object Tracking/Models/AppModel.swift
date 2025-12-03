@@ -77,6 +77,7 @@ class AppModel {
     }
     
     enum RecipeStep {
+        case step0 // Add Cap'n Crunch as ingredient
         case step1
         case step2
         case step3
@@ -97,7 +98,7 @@ class AppModel {
             guard immersiveSpaceState == .closed else { return }
             
             arkitSession.stop()
-            recipeStep = .step1
+            recipeStep = .step0
         }
     }
     var isReadyToRun: Bool {
@@ -106,7 +107,7 @@ class AppModel {
     
     var objectVisualizations: [UUID: ObjectAnchorVisualization] = [:]
     var providersStoppedWithError = false
-    var recipeStep: RecipeStep = .step1
+    var recipeStep: RecipeStep = .step0
     
     private var arkitSession = ARKitSession()
     private var handTrackingProvider: HandTrackingProvider?
@@ -178,7 +179,13 @@ class AppModel {
     func startTracking(with rootEntity: Entity) async {
         let referenceObjects = referenceObjectLoader.referenceObjects
         
+        print("🔍 DEBUG: Starting tracking with \(referenceObjects.count) reference objects")
+        for (index, obj) in referenceObjects.enumerated() {
+            print("  \(index + 1). Reference object ID: \(obj.id)")
+        }
+        
         guard !referenceObjects.isEmpty else {
+            print("❌ ERROR: No reference objects found to start tracking")
             fatalError("No reference objects found to start tracking")
         }
         
@@ -305,6 +312,24 @@ class AppModel {
                             visualization.entity.findEntity(named: "MilkMagic")?.isEnabled = true
                             visualization.entity.findEntity(named: "MilkBubbles")?.isEnabled = false
                         }
+                    case .capnCrunch:
+                        // Cap'n Crunch interaction with particle effects like Milk
+                        if leftHandNearestDistance < Constants.minimumFingerDistance
+                            || rightHandNearestDistance < Constants.minimumFingerDistance
+                        {
+                            // Switch to crunch bubbles effect when touched
+                            visualization.entity.findEntity(named: "CrunchMagic")?.isEnabled = false
+                            visualization.entity.findEntity(named: "CrunchBubbles")?.isEnabled = true
+                            
+                            // Advance recipe when Cap'n Crunch is added
+                            if recipeStep == .step0 {
+                                recipeStep = .step1
+                            }
+                        } else {
+                            // Show normal crunch magic particles when not touched
+                            visualization.entity.findEntity(named: "CrunchMagic")?.isEnabled = true
+                            visualization.entity.findEntity(named: "CrunchBubbles")?.isEnabled = false
+                        }
                     case .none:
                         fatalError("Unknown ObjectAnchorVisualization.type in processHandUpdates")
                     }
@@ -329,9 +354,16 @@ class AppModel {
                 // Create a new visualization for the reference object that ARKit just detected.
                 // The app displays the USDZ file that the reference object was trained on as
                 // a wireframe on top of the real-world object.
+                print("🎯 DEBUG: Object detected! Reference object ID: \(anchor.referenceObject.id)")
                 let model: Entity? = referenceObjectLoader.usdzsPerReferenceObjectID[anchor.referenceObject.id]
+                if let model = model {
+                    print("🎯 DEBUG: Found model for object: \(model.name)")
+                } else {
+                    print("❌ DEBUG: No model found for reference object ID: \(anchor.referenceObject.id)")
+                }
                 let visualization = await ObjectAnchorVisualization(for: anchor,
                                                                     withModel: model)
+                print("🎯 DEBUG: Created visualization for object type: \(visualization.type?.rawValue ?? "unknown")")
                 objectVisualizations[id] = visualization
                 rootEntity.addChild(visualization.entity)
             case .updated:

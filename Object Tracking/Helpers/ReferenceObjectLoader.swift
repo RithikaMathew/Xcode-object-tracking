@@ -20,6 +20,13 @@ class ReferenceObjectLoader {
         if let resourcesPath: String = Bundle.main.resourcePath {
             do {
                 try referenceObjectFiles = FileManager.default.contentsOfDirectory(atPath: resourcesPath).filter { $0.hasSuffix(".referenceobject") }
+                
+                // Debug logging
+                print("🔍 DEBUG: Found \(referenceObjectFiles.count) reference object files:")
+                for file in referenceObjectFiles {
+                    print("  - \(file)")
+                }
+                print("🔍 DEBUG: Bundle resource path: \(resourcesPath)")
             } catch {
                 fatalError("Failed to load reference object files with error: \(error)")
             }
@@ -43,7 +50,9 @@ class ReferenceObjectLoader {
         
         do {
             try await referenceObject = ReferenceObject(from: url)
+            print("🔍 DEBUG: Successfully loaded reference object: \(url.lastPathComponent)")
         } catch {
+            print("❌ ERROR: Failed to load reference object at \(url) with error: \(error)")
             fatalError("Failed to load reference object at \(url) with error: \(error)")
         }
         

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A2731EEB2EAF306200ADEBF7 /* CapnCrunch.referenceobject in Sources */ = {isa = PBXBuildFile; fileRef = A2731EEA2EAF306200ADEBF7 /* CapnCrunch.referenceobject */; };
 		B103A9D12C2A0C7300D1BF60 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = B103A9D02C2A0C7300D1BF60 /* RealityKitContent */; };
 		B103A9D32C2A0C7300D1BF60 /* ObjectTrackingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B103A9D22C2A0C7300D1BF60 /* ObjectTrackingApp.swift */; };
 		B103A9D52C2A0C7300D1BF60 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B103A9D42C2A0C7300D1BF60 /* HomeView.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A2731EEA2EAF306200ADEBF7 /* CapnCrunch.referenceobject */ = {isa = PBXFileReference; lastKnownFileType = file.referenceobject; path = CapnCrunch.referenceobject; sourceTree = "<group>"; };
 		B103A9CB2C2A0C7300D1BF60 /* Object Tracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Object Tracking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B103A9CF2C2A0C7300D1BF60 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		B103A9D22C2A0C7300D1BF60 /* ObjectTrackingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTrackingApp.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				B1D3371E2C2C7A6400438BF8 /* Box.referenceobject */,
 				B1D3371F2C2C7A6400438BF8 /* DutchOven.referenceobject */,
+				A2731EEA2EAF306200ADEBF7 /* CapnCrunch.referenceobject */,
 				B1D337202C2C7A6400438BF8 /* Milk.referenceobject */,
 			);
 			path = "Reference Objects";
@@ -240,6 +243,7 @@
 				B103A9F22C2B517900D1BF60 /* ErrorView.swift in Sources */,
 				B103A9D32C2A0C7300D1BF60 /* ObjectTrackingApp.swift in Sources */,
 				B103A9F02C2B24A000D1BF60 /* ReferenceObjectLoader.swift in Sources */,
+				A2731EEB2EAF306200ADEBF7 /* CapnCrunch.referenceobject in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,16 +377,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Object Tracking/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4U75FTRUTU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_NSHandsTrackingUsageDescription = "This app tracks the proximity of your hands to tracked objects";
+				INFOPLIST_KEY_NSWorldSensingUsageDescription = "This app tracks objects in your environment";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Object-Tracking";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Object-TrackingRM";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -399,16 +405,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Object Tracking/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4U75FTRUTU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_NSHandsTrackingUsageDescription = "This app tracks the proximity of your hands to tracked objects";
+				INFOPLIST_KEY_NSWorldSensingUsageDescription = "This app tracks objects in your environment";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Object-Tracking";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Object-TrackingRM";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;

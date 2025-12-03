@@ -83,16 +83,20 @@ struct HomeView: View {
     
     private var steps: some View {
         Group {
-            Text("1. Find a container")
+            Text("1. Add Cap'n Crunch cereal")
+                .opacity(appModel.recipeStep == .step0 ? 1 : 0.5)
             
-            Text("2. Find the first ingredient")
-                .opacity(appModel.recipeStep != .step1 ? 1 : 0)
+            Text("2. Find a container")
+                .opacity(appModel.recipeStep == .step1 || appModel.recipeStep == .step2 || appModel.recipeStep == .step3 || appModel.recipeStep == .complete ? 1 : 0.3)
             
-            Text("3. Find the second ingredient")
-                .opacity(appModel.recipeStep == .step3 || appModel.recipeStep == .complete ? 1 : 0)
+            Text("3. Find the first ingredient")
+                .opacity(appModel.recipeStep == .step2 || appModel.recipeStep == .step3 || appModel.recipeStep == .complete ? 1 : 0.3)
             
-            Text("4. Enjoy!")
-                .opacity(appModel.recipeStep == .complete ? 1 : 0)
+            Text("4. Find the second ingredient")
+                .opacity(appModel.recipeStep == .step3 || appModel.recipeStep == .complete ? 1 : 0.3)
+            
+            Text("5. Enjoy!")
+                .opacity(appModel.recipeStep == .complete ? 1 : 0.3)
         }
         .font(.headline)
         .padding()

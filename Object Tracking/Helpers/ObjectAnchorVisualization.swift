@@ -15,6 +15,7 @@ class ObjectAnchorVisualization {
         case box
         case dutchOven
         case milk
+        case capnCrunch
     }
     
     var entity: Entity
@@ -41,6 +42,8 @@ class ObjectAnchorVisualization {
             self.type = .dutchOven
         case ObjectType.milk.rawValue:
             self.type = .milk
+        case ObjectType.capnCrunch.rawValue:
+            self.type = .capnCrunch
         default:
             fatalError("Attempted to create ObjectAnchorVisualization for unknown ObjectType")
         }
@@ -109,6 +112,44 @@ class ObjectAnchorVisualization {
             bubblesParticles.isEnabled = false
             entity.addChild(magicParticles)
             entity.addChild(bubblesParticles)
+        case .capnCrunch:
+            // Cap'n Crunch with particle effects like Milk
+            guard let crunchParticles = try? await Entity(named: "MilkMagic",
+                                                         in: realityKitContentBundle),
+                  let crunchBubbles = try? await Entity(named: "MilkBubbles",
+                                                       in: realityKitContentBundle)
+            else {
+                print("Unable to access MilkMagic, MilkBubbles scenes for Cap'n Crunch")
+                // Fallback to wireframe if particles not available
+                let originVisualization = Entity.createAxes(axisScale: axisScale,
+                                                            alpha: alpha)
+                
+                var wireframeMaterial = PhysicallyBasedMaterial()
+                wireframeMaterial.triangleFillMode = .lines
+                wireframeMaterial.faceCulling = .back
+                wireframeMaterial.baseColor = .init(tint: .orange)
+                wireframeMaterial.blending = .transparent(opacity: 0.6)
+                model.applyMaterialRecursively(wireframeMaterial)
+                
+                let descriptionEntity = Entity.createText(model.name,
+                                                          height: textBaseHeight * axisScale)
+                descriptionEntity.transform.translation.x = textBaseHeight * axisScale
+                descriptionEntity.transform.translation.y = anchor.boundingBox.extent.y * 0.5
+                
+                entity.addChild(originVisualization)
+                entity.addChild(model)
+                entity.addChild(descriptionEntity)
+                self.entity = entity
+                return
+            }
+            
+            // Rename particles for Cap'n Crunch context
+            crunchParticles.name = "CrunchMagic"
+            crunchBubbles.name = "CrunchBubbles"
+            
+            crunchBubbles.isEnabled = false
+            entity.addChild(crunchParticles)
+            entity.addChild(crunchBubbles)
         }
         
         entity.transform = Transform(matrix: anchor.originFromAnchorTransform)
