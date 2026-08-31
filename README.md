@@ -1,27 +1,46 @@
 # visionOS 2 Object Tracking Demo
-visionOS 2 + Object Tracking + ARKit means: we can create visual highlights of real world objects around us and have those visualizations respond to the proximity of our hands.
 
-This project is largely a quick repurposing and combining of Apple's [Scene Reconstruction sample project](https://developer.apple.com/documentation/visionos/incorporating-real-world-surroundings-in-an-immersive-experience) (which utilizes ARKit's `HandTrackingProvider`) and [Object Tracking sample project](https://developer.apple.com/documentation/visionos/exploring_object_tracking_with_arkit).
+This project demonstrates AI-powered object tracking on Apple Vision Pro using **visionOS 2**, **ARKit Object Tracking**, and **Create ML**. The application recognizes a specific real-world object and provides visual feedback when that object is detected in the user's environment.
 
-The full demo video with sound is [here](https://youtu.be/kiSOmFVfNpc).
+The project combines concepts from Apple's Scene Reconstruction and Object Tracking sample applications, integrating object recognition with immersive spatial visualizations.
 
-Some details about putting together this demo are over [here](https://vision.engineer/posts/object-tracking-in-visionOS-2/).
+## Project Overview
 
-## Build Instructions
-1. Choose your Apple Developer Account in: Signing & Capabilities
-1. Build
+The goal was to train the system to recognize a specific cereal box rather than a generic category of objects. Once the trained object is identified within the user's surroundings, the application generates colorful particle effects to indicate successful detection and tracking in real time.
 
-## Models Used in This Project
-I live in Chicago and purchased the cereal and milk at a local Jewel in June 2024 – your local packaging may vary and prevent recognition. The three products used are:
-1. [Cap'n Crunch (Large Size)](https://www.thefreshgrocer.com/sm/pickup/rsid/2000/product/capn-crunch-sweetened-corn-&-oat-cereal-large-size-18-oz-id-00030000573242/)
-1. [Fairlife 2%](https://fairlife.com/ultra-filtered-milk/reduced-fat-2-percent-milk/)
-1. [Lodge Dutch Oven](https://www.lodgecastiron.com/product/enameled-dutch-oven?sku=EC6D33)
+## Technical Implementation
 
-## Using Your Own Models
-If you want to strip out the three bundled objects and use your own:
-1. You will need to train on a `.udsz` file to create a `.referenceObject`, I recommend using Apple's [Object Capture sample project](https://developer.apple.com/documentation/realitykit/guided-capture-sample) to create a `.usdz` file of your object
-1. You will need to use Create ML (version 6, or higher, which comes bundled with Xcode 16) to train a `.referenceObject` from your `.usdz`, for me this process has taken anywhere from 4 - 16 hours per `.referenceObject`
-1. You will need to bundle your new `.referenceObject` in the Xcode project
-1. You will need to coordinate the naming of your new `.referenceObject` with the demo's `ObjectType` enum so everything plays nicely together
+### 1. Object Capture
 
-![visionOS 2 Object Tracking Demo Clip](https://github.com/robomex/visionOS-2-Object-Tracking-Demo/assets/2218937/ea1ec6c7-5311-4de5-af3c-f7f8eefa3dce)
+The cereal box was scanned using **Reality Composer** on an iPhone. Images were captured from multiple angles to reconstruct the object's 3D geometry and create a high-quality USDZ model.
+
+### 2. Model Training
+
+The generated USDZ model was imported into **Create ML's Object Tracking** workflow. Create ML used the scanned object data to train a reference object capable of recognizing the cereal box in real-world environments. Training required approximately eight hours to complete.
+
+### 3. Vision Pro Integration
+
+The trained reference object was integrated into a **visionOS 2** application built with **ARKit** and **SwiftUI**. When the Vision Pro detects the trained cereal box, the app anchors visual effects to the object's position and continuously tracks it as it moves through the environment.
+
+## Features
+
+* AI-based object recognition using Create ML
+* Real-time object tracking with ARKit
+* Detection of a specific trained object rather than a generic category
+* Spatial visual effects anchored to tracked objects
+* Built for Apple Vision Pro and visionOS 2
+
+## Technologies Used
+
+* visionOS 2
+* ARKit Object Tracking
+* Create ML
+* Reality Composer
+* SwiftUI
+* Apple Vision Pro
+
+## Demo
+
+Watch the demo video below:
+
+![visionOS 2 Object Tracking Demo](https://drive.google.com/file/d/1jzku4RYqvGqMszgwS4huu9b6mgDt0DBr/view?usp=sharing)
