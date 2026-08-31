@@ -41,8 +41,4 @@ The trained reference object was integrated into a **visionOS 2** application bu
 
 ## Demo
 
-Watch the demo video below:
-
-## Demo
-
 [Watch the demo video](https://drive.google.com/file/d/1jzku4RYqvGqMszgwS4huu9b6mgDt0DBr/view)
