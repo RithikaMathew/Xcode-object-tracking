@@ -43,4 +43,6 @@ The trained reference object was integrated into a **visionOS 2** application bu
 
 Watch the demo video below:
 
-![visionOS 2 Object Tracking Demo](https://drive.google.com/file/d/1jzku4RYqvGqMszgwS4huu9b6mgDt0DBr/view?usp=sharing)
+## Demo
+
+[Watch the demo video](https://drive.google.com/file/d/1jzku4RYqvGqMszgwS4huu9b6mgDt0DBr/view)
